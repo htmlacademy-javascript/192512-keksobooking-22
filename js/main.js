@@ -68,7 +68,7 @@ const createOffer = () => {
   const y = getFloatNumber(139.70000, 139.80000, 5);
   const addressValue = x + ', ' + y;
 
-  let avatarSrc = 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png';
+  const avatarSrc = 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png';
 
   return {
     author: {
@@ -94,8 +94,8 @@ const createOffer = () => {
   };
 };
 
-const similarOffer = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createOffer());
-similarOffer();
+const similarOffers = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createOffer());
+
 
 
 
