@@ -29,8 +29,6 @@ function getIntegerNumber(min, max) {
 getIntegerNumber(0, 20);
 
 
-/* Task keksobooking */
-
 //получение случайного числа с плавающей точкой из представленого диапазона чисел
 function getFloatNumber(min, max, decimalNum) {
   //возводим в степень
@@ -95,6 +93,7 @@ const createOffer = () => {
 };
 
 const similarOffers = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createOffer());
+similarOffers;
 
 
 
