@@ -1,3 +1,10 @@
+const TYPES = ['palace', 'flat', 'house', 'bungalow'];
+const CHECKINS = ['12:00', '13:00', '14:00'];
+const CHECKOUTS = ['12:00', '13:00', '14:00'];
+const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+const SIMILAR_OFFER_COUNT = 10;
+
 //генерация рандомного числа
 function getRandomNumber(min, max) {
   let rand = Math.random() * (max - min) + min;
@@ -35,18 +42,6 @@ function getFloatNumber(min, max, decimalNum) {
 getFloatNumber(0, 20, 2);
 
 
-
-const TYPES = ['palace', 'flat', 'house', 'bungalow'];
-const CHECKINS = ['12:00', '13:00', '14:00'];
-const CHECKOUTS = ['12:00', '13:00', '14:00'];
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-
-let x = getFloatNumber(35.65000, 35.70000, 5);
-let y = getFloatNumber(139.70000, 139.80000, 5);
-
-let addressValue = x + ', ' + y;
-
 function shuffleData(data) {
 
   let elems = data.slice();
@@ -61,14 +56,17 @@ function shuffleData(data) {
 
 }
 
-const SIMILAR_OFFER_COUNT = 10;
 
-const createObj = () => {
+
+const createOffer = () => {
   const randomCheckin = getIntegerNumber(0, CHECKINS.length - 1);
   const randomType = getIntegerNumber(0, TYPES.length - 1);
   const randomCheckout = getIntegerNumber(0, CHECKOUTS.length - 1);
   const randomFeature = shuffleData(FEATURES).slice(0, getIntegerNumber(1, FEATURES.length - 1));
   const randomPhoto = shuffleData(PHOTOS).slice(0, getIntegerNumber(1, PHOTOS.length));
+  const x = getFloatNumber(35.65000, 35.70000, 5);
+  const y = getFloatNumber(139.70000, 139.80000, 5);
+  const addressValue = x + ', ' + y;
 
   let avatarSrc = 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png';
 
@@ -96,7 +94,7 @@ const createObj = () => {
   };
 };
 
-const similarOffer = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createObj());
+const similarOffer = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createOffer());
 similarOffer();
 
 
