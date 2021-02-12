@@ -17,8 +17,6 @@ function getIntegerNumber(min, max) {
   return Math.round(getRandomNumber(min, max));
 }
 
-getIntegerNumber(0, 20);
-
 //получение случайного числа с плавающей точкой из представленого диапазона чисел
 function getFloatNumber(min, max, decimalNum) {
   //возводим в степень
@@ -26,8 +24,6 @@ function getFloatNumber(min, max, decimalNum) {
   checkNegativeNumber(min, max);
   return Math.round(getRandomNumber(min, max) * degree) / degree;
 }
-
-getFloatNumber(0, 20, 2);
 
 //мешаем данные массива
 function shuffleData(data) {

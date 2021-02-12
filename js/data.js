@@ -5,7 +5,6 @@ const CHECKINS = ['12:00', '13:00', '14:00'];
 const CHECKOUTS = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-const SIMILAR_OFFER_COUNT = 10;
 
 
 
@@ -45,5 +44,23 @@ const createOffer = () => {
   };
 };
 
-const similarOffers = new Array(SIMILAR_OFFER_COUNT).fill(null).map(() => createOffer());
-similarOffers;
+const createSimilarOffers = (item) => {
+  const similarOffers = new Array(item).fill(null).map(() => createOffer());
+  return similarOffers;
+};
+
+export { createSimilarOffers };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
