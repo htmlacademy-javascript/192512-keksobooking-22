@@ -49,6 +49,8 @@ const createSimilarOffers = (item) => {
   return similarOffers;
 };
 
+
+
 export { createSimilarOffers };
 
 
