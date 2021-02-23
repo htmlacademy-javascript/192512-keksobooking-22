@@ -1,5 +1,4 @@
 const createPopup = (offer) => {
-  console.log(offer);
   const templateCard = document.querySelector('#card').content;
   const newCard = templateCard.querySelector('.popup');
   const cardElement = newCard.cloneNode(true);

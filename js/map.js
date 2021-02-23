@@ -7,12 +7,14 @@ const formChildren = form.children;
 const formElements = Array.from(formChildren);
 const formFilterChildren = formFilter.children;
 const formFilterElements = Array.from(formFilterChildren);
+const LAT = 35.6895000;
+const LNG = 139.6917100
 
 
 /*функция создает массив меток*/
 const createMarks = function (offers) {
   offers.forEach(offer => {
-
+    /*global L:readonly*/
     const icon = L.icon({
       iconUrl: 'img/pin.svg',
       iconSize: [40, 40],
@@ -22,13 +24,13 @@ const createMarks = function (offers) {
     const marker = L.marker({
       lat: offer.location.x,
       lng: offer.location.y,
-      icon: icon
+      icon: icon,
     });
 
     marker
       .addTo(map)
       .bindPopup(
-        createPopup(offer)
+        createPopup(offer),
       );
   });
 
@@ -61,8 +63,8 @@ const map = L.map('map-canvas')
     removeElementDisabled(formFilter, formFilterElements);
   })
   .setView({
-    lat: 35.6895000,
-    lng: 139.6917100,
+    lat: LAT,
+    lng: LNG,
   }, 10);
 
 L.tileLayer(
@@ -81,8 +83,8 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: 35.6895000,
-    lng: 139.6917100,
+    lat: LAT,
+    lng: LNG,
   },
   {
     draggable: true,
@@ -93,7 +95,11 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   const address = document.querySelector('#address');
-  address.value = evt.target.getLatLng();
+  const lat = evt.target.getLatLng();
+  const valueGeo = Object.values(lat);
+  valueGeo.forEach(el => {
+    address.value += `${el} `;
+  });
 });
 
 
