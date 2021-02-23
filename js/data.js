@@ -7,7 +7,7 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 
-
+/*функция которая создает данные для объявлений*/
 const createOffer = () => {
   const randomCheckin = getIntegerNumber(0, CHECKINS.length - 1);
   const randomType = getIntegerNumber(0, TYPES.length - 1);
@@ -44,6 +44,7 @@ const createOffer = () => {
   };
 };
 
+/*функция которая создает массив объявлений из предоставленных данных функции createOffer*/
 const createSimilarOffers = (item) => {
   const similarOffers = new Array(item).fill(null).map(() => createOffer());
   return similarOffers;
