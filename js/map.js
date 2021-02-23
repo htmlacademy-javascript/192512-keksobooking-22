@@ -95,11 +95,8 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   const address = document.querySelector('#address');
-  const lat = evt.target.getLatLng();
-  const valueGeo = Object.values(lat);
-  valueGeo.forEach(el => {
-    address.value += `${el} `;
-  });
+  const latLng = evt.target.getLatLng();
+  address.value = `${ latLng.lat.toFixed(5) }, ${ latLng.lng.toFixed(5) }`;
 });
 
 
