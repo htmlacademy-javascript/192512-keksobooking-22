@@ -1,16 +1,6 @@
-import { createSimilarOffers } from './data.js';
-
-const templateCard = document.querySelector('#card').content;
-const newCard = templateCard.querySelector('.popup');
-
-const mapCanvas = document.querySelector('.map__canvas');
-
-
-const similarCards = createSimilarOffers(1);
-
-const cardFragment = document.createDocumentFragment();
-
-similarCards.forEach(({ offer, author }) => {
+const createPopup = (offer) => {
+  const templateCard = document.querySelector('#card').content;
+  const newCard = templateCard.querySelector('.popup');
   const cardElement = newCard.cloneNode(true);
 
   const titlePopup = cardElement.querySelector('.popup__title');
@@ -24,25 +14,27 @@ similarCards.forEach(({ offer, author }) => {
   const photosPopup = cardElement.querySelector('.popup__photos');
   const avatarPopup = cardElement.querySelector('.popup__avatar');
 
-  titlePopup.textContent = offer.title;
-  addressPopup.textContent = offer.address;
-  pricePopup.textContent = `${offer.price} ₽/ночь`;
-  typePopup.textContent = offer.type;
-  capacityPopup.textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
-  timePopup.textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
-  featuresPopup.innerHTML = offer.features.map(el => {
+  titlePopup.textContent = offer.offer.title;
+  addressPopup.textContent = offer.offer.address;
+  pricePopup.textContent = `${offer.offer.price} ₽/ночь`;
+  typePopup.textContent = offer.offer.type;
+  capacityPopup.textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей`;
+  timePopup.textContent = `Заезд после ${offer.offer.checkin}, выезд до ${offer.offer.checkout}`;
+  featuresPopup.innerHTML = offer.offer.features.map(el => {
     return `
     <li class="popup__feature popup__feature--${el}"></li>
     `;
   }).join('');
-  descPopup.textContent = offer.description;
-  photosPopup.innerHTML = offer.photos.map(el => {
+  descPopup.textContent = offer.offer.description;
+  photosPopup.innerHTML = offer.offer.photos.map(el => {
     return `
     <img src="${el}" class="popup__photo" width="45" height="40" alt="Фотография жилья"></img>
     `
   }).join('');
-  avatarPopup.src = author.avatar;
-  cardFragment.appendChild(cardElement);
-});
+  avatarPopup.src = offer.author.avatar;
 
-mapCanvas.appendChild(cardFragment);
+  return cardElement;
+
+};
+
+export { createPopup };
