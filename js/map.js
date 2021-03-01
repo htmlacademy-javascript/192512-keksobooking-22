@@ -111,6 +111,11 @@ const setInitStartPin = () => {
     lat: LAT,
     lng: LNG,
   }, 10);
+  mainPinMarker.setLatLng({
+    lat: LAT,
+    lng: LNG,
+  });
+  addAddress(LAT, LNG);
 };
 
 
