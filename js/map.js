@@ -10,23 +10,29 @@ const formFilterElements = Array.from(formFilterChildren);
 const LAT = 35.6895000;
 const LNG = 139.6917100;
 
+const map = L.map('map-canvas');
+
+const smallIcon = L.icon({
+  iconUrl: '../img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
 /*функция создает массив меток*/
 const createMarks = function (offers) {
 
   offers.forEach(offer => {
-    /*global L:readonly*/
-    const icon = L.icon({
-      iconUrl: '../img/pin.svg',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-    });
+  /*global L:readonly*/
 
-    const marker = L.marker({
-      lat: offer.location.lat,
-      lng: offer.location.lng,
-      icon: icon,
-    });
+
+    const marker = L.marker(
+      {
+        lat: offer.location.lat,
+        lng: offer.location.lng,
+      },
+      {
+        icon: smallIcon,
+      });
 
     marker
       .addTo(map)
@@ -37,6 +43,20 @@ const createMarks = function (offers) {
 
 };
 
+const removeMarker = (offer) => {
+  const marker = L.marker(
+    {
+      lat: offer.location.lat,
+      lng: offer.location.lng,
+    },
+    {
+      icon: smallIcon,
+    });
+
+  map.removeLayer(marker);
+
+};
+
 /*функция добавляет класс .ad-form--disabled и атрибут disabled */
 const addElementDisabled = function(classEl, elems) {
   classEl.classList.add('ad-form--disabled');
@@ -44,7 +64,6 @@ const addElementDisabled = function(classEl, elems) {
     el.setAttribute('disabled', 'true');
   });
 };
-
 addElementDisabled(form, formElements);
 addElementDisabled(formFilter, formFilterElements);
 
@@ -55,7 +74,7 @@ const removeElementDisabled = function (classEl, elems) {
     el.removeAttribute('disabled');
   });
 };
-const map = L.map('map-canvas');
+
 
 map.on('load', () => {
   removeElementDisabled(form, formElements);
@@ -120,4 +139,4 @@ const setInitStartPin = () => {
 
 
 
-export { createMarks, setInitStartPin };
+export { createMarks, setInitStartPin, removeMarker };
