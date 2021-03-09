@@ -76,9 +76,10 @@ const fetchData = createFetch((data) => {
   createMarks(offers.slice(0, SIMILAR_OFFER_COUNT));
   filterForm.addEventListener('change', () => {
     const filterData = filterOffers(offers);
-    offers.forEach((el) => {
-      removeMarker(el);
-    });
+    removeMarker();
+    // offers.forEach((el) => {
+    //   removeMarker(el);
+    // });
     createMarks(filterData.slice(0, SIMILAR_OFFER_COUNT));
   });
 },

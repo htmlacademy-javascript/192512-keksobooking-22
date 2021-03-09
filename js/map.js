@@ -10,6 +10,8 @@ const formFilterElements = Array.from(formFilterChildren);
 const LAT = 35.6895000;
 const LNG = 139.6917100;
 
+
+
 const map = L.map('map-canvas');
 
 const smallIcon = L.icon({
@@ -17,6 +19,8 @@ const smallIcon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
+
+let markersGroup = L.layerGroup().addTo(map);
 
 /*функция создает массив меток*/
 const createMarks = function (offers) {
@@ -35,7 +39,7 @@ const createMarks = function (offers) {
       });
 
     marker
-      .addTo(map)
+      .addTo(markersGroup)
       .bindPopup(
         createPopup(offer),
       );
@@ -43,18 +47,9 @@ const createMarks = function (offers) {
 
 };
 
-const removeMarker = (offer) => {
-  const marker = L.marker(
-    {
-      lat: offer.location.lat,
-      lng: offer.location.lng,
-    },
-    {
-      icon: smallIcon,
-    });
-
-  map.removeLayer(marker);
-
+const removeMarker = () => {
+  map.removeLayer(markersGroup);
+  markersGroup = L.layerGroup().addTo(map);
 };
 
 /*функция добавляет класс .ad-form--disabled и атрибут disabled */
