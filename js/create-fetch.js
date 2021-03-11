@@ -1,4 +1,4 @@
-const createFetch = (onSuccess, onError) => () => {
+const createFetch = (onSuccess) => () => {
   return fetch('https://22.javascript.pages.academy/keksobooking/data', {
     method: 'GET',
     credentials: 'same-origin',
@@ -10,9 +10,6 @@ const createFetch = (onSuccess, onError) => () => {
     })
     .then((data) => {
       onSuccess(data);
-    })
-    .catch((err) => {
-      onError(err);
     });
 };
 
@@ -30,7 +27,6 @@ const createSubmit = (formData, onSuccess, onError) => {
       onError(err);
     });
 };
-
 
 
 export { createFetch, createSubmit };

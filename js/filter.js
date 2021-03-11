@@ -9,7 +9,7 @@ const typeGuest = filterForm.querySelector('#housing-guests');
 
 
 const SIMILAR_OFFER_COUNT = 10;
-
+const DELAY = 500;
 
 const filterPrice = (offer, price) => {
   if (price === 'any') {
@@ -71,21 +71,20 @@ const filterOffers = (offers) => {
 
 let offers = [];
 
+
+
 const fetchData = createFetch((data) => {
+  /*global _:readonly*/
   offers = data;
   createMarks(offers.slice(0, SIMILAR_OFFER_COUNT));
-  filterForm.addEventListener('change', () => {
+  filterForm.addEventListener('change', _.debounce(() => {
     const filterData = filterOffers(offers);
     removeMarker();
-    // offers.forEach((el) => {
-    //   removeMarker(el);
-    // });
     createMarks(filterData.slice(0, SIMILAR_OFFER_COUNT));
-  });
-},
-() => {},
-);
+  }, DELAY));
+});
 fetchData();
+
 
 
 

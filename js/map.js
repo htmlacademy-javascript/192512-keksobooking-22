@@ -27,8 +27,6 @@ const createMarks = function (offers) {
 
   offers.forEach(offer => {
   /*global L:readonly*/
-
-
     const marker = L.marker(
       {
         lat: offer.location.lat,
