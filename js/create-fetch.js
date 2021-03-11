@@ -25,6 +25,7 @@ const createSubmit = (formData, onSuccess, onError) => {
   })
     .catch((err) => {
       onError(err);
+      console.log(err);
     });
 };
 

@@ -1,4 +1,5 @@
 import { showMsg } from './show-message.js';
+import { showError } from './show-message.js';
 import { setInitStartPin } from './map.js';
 import { createSubmit } from './create-fetch.js';
 
@@ -36,7 +37,9 @@ mainForm.addEventListener('submit', (evt) => {
       showMsg();
       setInitStartPin();
     },
-    () => {},
+    () => {
+      showError();
+    },
   );
 });
 
