@@ -8,28 +8,22 @@ const inputFieldPrice = mainForm.querySelector('#price');
 const timeIn = mainForm.querySelector('#timein');
 const timeOut = mainForm.querySelector('#timeout');
 
+const roomNumber = mainForm.querySelector('#room_number');
+const capacityGuests = mainForm.querySelectorAll('#capacity option');
+
 const TypeApartment = {
-  bungalow: {
-    min: 0,
-    max: 999,
-    placeholder: 0,
-  },
-  flat: {
-    min: 1000,
-    max: 4999,
-    placeholder: 1000,
-  },
-  palace: {
-    min: 10000,
-    max: 1000000,
-    placeholder: 10000,
-  },
-  house: {
-    min: 5000,
-    max: 9999,
-    placeholder: 5000,
-  },
-}
+  bungalow: 0,
+  flat: 1000,
+  palace: 10000,
+  house: 5000,
+};
+
+const NumberRoom = {
+  '1': ['1'],
+  '2': ['1', '2'],
+  '3': ['1', '2', '3'],
+  '100': ['0'],
+};
 
 mainForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -47,9 +41,8 @@ mainForm.addEventListener('submit', (evt) => {
 });
 
 typeField.addEventListener('change', () => {
-  inputFieldPrice.min = TypeApartment[typeField.value].min;
-  inputFieldPrice.max = TypeApartment[typeField.value].max;
-  inputFieldPrice.placeholder = TypeApartment[typeField.value].placeholder;
+  inputFieldPrice.min = TypeApartment[typeField.value];
+  inputFieldPrice.placeholder = TypeApartment[typeField.value];
 });
 
 timeIn.addEventListener('change', () => {
@@ -58,6 +51,23 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
+
+const setDisabledOption = () => {
+  capacityGuests.forEach(el => {
+    el.removeAttribute('selected');
+    el.disabled = true;
+    if (NumberRoom[roomNumber.value].includes(el.value)) {
+      el.setAttribute('selected', true);
+      el.disabled = false;
+    }
+  });
+};
+
+setDisabledOption();
+
+roomNumber.addEventListener('change', setDisabledOption);
+
+
 
 
 
