@@ -2,18 +2,13 @@ import { createPopup } from './popup-сard.js';
 
 const form = document.querySelector('.ad-form');
 const formFilter = document.querySelector('.map__filters');
-
 const formChildren = form.children;
 const formElements = Array.from(formChildren);
 const formFilterChildren = formFilter.children;
 const formFilterElements = Array.from(formFilterChildren);
 const LAT = 35.6895000;
 const LNG = 139.6917100;
-
-
-
 const map = L.map('map-canvas');
-
 const smallIcon = L.icon({
   iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
@@ -24,7 +19,6 @@ let markersGroup = L.layerGroup().addTo(map);
 
 /*функция создает массив меток*/
 const createMarks = function (offers) {
-
   offers.forEach(offer => {
   /*global L:readonly*/
     const marker = L.marker(
@@ -35,14 +29,12 @@ const createMarks = function (offers) {
       {
         icon: smallIcon,
       });
-
     marker
       .addTo(markersGroup)
       .bindPopup(
         createPopup(offer),
       );
   });
-
 };
 
 const removeMarker = () => {
@@ -60,14 +52,12 @@ const addElementDisabled = function(classEl, elems) {
 addElementDisabled(form, formElements);
 addElementDisabled(formFilter, formFilterElements);
 
-
 const removeElementDisabled = function (classEl, elems) {
   classEl.classList.remove('ad-form--disabled');
   elems.forEach(el => {
     el.removeAttribute('disabled');
   });
 };
-
 
 map.on('load', () => {
   removeElementDisabled(form, formElements);
@@ -84,7 +74,6 @@ L.tileLayer(
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   },
 ).addTo(map);
-
 
 const mainPinIcon = L.icon({
   iconUrl: 'img/main-pin.svg',
@@ -117,7 +106,6 @@ mainPinMarker.addTo(map);
 addAddress(LAT, LNG);
 mainPinMarker.on('moveend', onLoadMainPin);
 
-
 const setInitStartPin = () => {
   map.setView({
     lat: LAT,
@@ -129,7 +117,5 @@ const setInitStartPin = () => {
   });
   addAddress(LAT, LNG);
 };
-
-
 
 export { createMarks, setInitStartPin, removeMarker };

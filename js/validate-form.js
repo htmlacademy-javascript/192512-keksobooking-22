@@ -1,4 +1,5 @@
 import { showMsg } from './show-message.js';
+import { showError } from './show-message.js';
 import { setInitStartPin } from './map.js';
 import { createSubmit } from './create-fetch.js';
 
@@ -7,9 +8,10 @@ const typeField = mainForm.querySelector('#type');
 const inputFieldPrice = mainForm.querySelector('#price');
 const timeIn = mainForm.querySelector('#timein');
 const timeOut = mainForm.querySelector('#timeout');
-
 const roomNumber = mainForm.querySelector('#room_number');
 const capacityGuests = mainForm.querySelectorAll('#capacity option');
+
+
 
 const TypeApartment = {
   bungalow: 0,
@@ -36,7 +38,9 @@ mainForm.addEventListener('submit', (evt) => {
       showMsg();
       setInitStartPin();
     },
-    () => {},
+    () => {
+      showError();
+    },
   );
 });
 
