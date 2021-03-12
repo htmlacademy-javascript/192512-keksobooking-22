@@ -7,7 +7,6 @@ const typePrice = filterForm.querySelector('#housing-price');
 const typeRoom = filterForm.querySelector('#housing-rooms');
 const typeGuest = filterForm.querySelector('#housing-guests');
 
-
 const SIMILAR_OFFER_COUNT = 10;
 const DELAY = 500;
 
@@ -15,7 +14,6 @@ const filterPrice = (offer, price) => {
   if (price === 'any') {
     return true;
   }
-
   if (offer.offer.price <= 10000 && price === 'low') {
     return true;
   }
@@ -70,8 +68,6 @@ const filterOffers = (offers) => {
 };
 
 let offers = [];
-
-
 
 const fetchData = createFetch((data) => {
   /*global _:readonly*/

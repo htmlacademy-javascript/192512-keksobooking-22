@@ -21,13 +21,13 @@ const createSubmit = (formData, onSuccess, onError) => {
   }).then((response) => {
     if (response.ok) {
       onSuccess();
+    } else {
+      onError();
     }
   })
-    .catch((err) => {
-      onError(err);
-      console.log(err);
+    .catch(() => {
+      onError();
     });
 };
-
 
 export { createFetch, createSubmit };

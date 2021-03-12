@@ -8,9 +8,10 @@ const typeField = mainForm.querySelector('#type');
 const inputFieldPrice = mainForm.querySelector('#price');
 const timeIn = mainForm.querySelector('#timein');
 const timeOut = mainForm.querySelector('#timeout');
-
 const roomNumber = mainForm.querySelector('#room_number');
 const capacityGuests = mainForm.querySelectorAll('#capacity option');
+
+
 
 const TypeApartment = {
   bungalow: 0,
